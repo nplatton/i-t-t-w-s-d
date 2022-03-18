@@ -14,14 +14,14 @@ const JoinGame = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
 
-  const [nameInput, setUsername] = useState(username);
+  const [nameInput, setNameInput] = useState(username);
 
   const [roomName, setRoomName] = useState("");
 
   const handleNameInput = (e) => {
     e.preventDefault();
     const input = e.target.value;
-    setUsername(input);
+    setNameInput(input);
   };
 
   const handleRoomInput = (e) => {
@@ -32,7 +32,7 @@ const JoinGame = () => {
   const handleSubmit = () => {
     socket.emit("join-room", roomName, nameInput);
     console.log("joined game");
-    dispatch(joinPlayer(nameInput, roomName));
+    dispatch(joinPlayer(roomName, nameInput));
     history("/quiz/waiting");
   };
 
